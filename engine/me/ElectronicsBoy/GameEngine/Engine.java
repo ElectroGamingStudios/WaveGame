@@ -100,7 +100,7 @@ public abstract class Engine extends Canvas implements Target, Runnable, HUDPost
 			}
 		});
 		this.frameLimit = frameLimit;
-		keyboard = new Keyboard();
+		keyboard = new Keyboard(target);
 		mouse = new Mouse();
 		this.addKeyListener(keyboard);
 		this.addMouseListener(mouse);

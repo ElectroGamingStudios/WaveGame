@@ -26,6 +26,7 @@ public class Game extends GUIWindow implements HUDPostTick {
 	public int level = 1;
 	public int fullScore = 0;
 	public PlayerEntity player;
+	public boolean hudReady = false;
 	
 	private int afterScoreLevel = 100;
 	
@@ -47,18 +48,21 @@ public class Game extends GUIWindow implements HUDPostTick {
 			player = new PlayerEntity(((Main)engine));
 			((Main)engine).handler.addObject(player);
 			gameStart = false;
-			hud.addRenderValue("Level", "0");
-			hud.addRenderValue("Score", "0");
+			if(!hudReady) {
+				hud.addRenderValue("Level", "0");
+				hud.addRenderValue("Score", "0");
+				hudReady = true;
+			}
 		}
 		
 		if(engine.sys.getState().equals("PLAY")) {
 			hud.updateValue(2, Integer.toString(scoreKeep++));
+			fullScore++;
 			if(scoreKeep >= afterScoreLevel) {
 				scoreKeep = 0;
 				hud.updateValue(1, Integer.toString(level++));
 				levelsReset++;
 				levelsTillBoss++;
-				fullScore++;
 				if(levelsTillBoss == 10) {
 					levelsTillBoss = 0;
 					levelsReset = 0;
@@ -78,8 +82,19 @@ public class Game extends GUIWindow implements HUDPostTick {
 				else if(levelsReset == 8)
 					((Main)engine).handler.addObject(new SmartEnemy(player, ((Main)engine)));
 			}
-			if(hud.health == 0) 
+			if(hud.health == 0) {
+				((Main)engine).handler.clearAll();
+				levelsTillBoss = 0;
+				levelsReset = 0;
+				scoreKeep = 0;
+				reset = 0;
+				level = 1;
+				afterScoreLevel = 100;
+				hud.health = 100;
+				hud.updateValue(1, "0");
+				hud.updateValue(2, "0");
 				engine.sys.setState("DEAD");
+			}
 		}
 		
 		hud.tick(this);

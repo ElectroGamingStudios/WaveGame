@@ -3,9 +3,17 @@ package me.ElectronicsBoy.GameEngine.input;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import me.ElectronicsBoy.GameEngine.Target;
+
 public class Keyboard extends KeyAdapter {
 	private boolean[] pressedKeys = new boolean[8];
 
+	private Target t;
+	
+	public Keyboard(Target t) {
+		this.t = t;
+	}
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -36,7 +44,7 @@ public class Keyboard extends KeyAdapter {
 		}
 		
 		else if(key == KeyEvent.VK_ESCAPE) {
-			System.exit(0);
+			t.onESC();
 		}
 	}
 	

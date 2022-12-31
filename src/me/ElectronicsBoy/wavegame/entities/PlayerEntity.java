@@ -30,7 +30,7 @@ public class PlayerEntity extends Entity {
 			if(e.getType() == EntityType.Enemy)
 				if(e.getBounds().intersects(this.getBounds()))
 					if(e instanceof BossBulletEntity)
-						main.hud.health -= 8;
+						main.hud.health -= 4;
 					else if(e instanceof BossBulletEntity)
 						main.hud.health -= 16;
 					else

@@ -20,8 +20,7 @@ public class HelpMenu extends GUIWindow {
 			engine.sys.setState("MENU");
 		}));
 	}
-	public void tickUI() {
-	}
+	public void tickUI() {}
 	public void renderUI(Graphics g) {
 		g.setFont(new Font("arial", 1, 50));
 		g.setColor(Color.WHITE);
