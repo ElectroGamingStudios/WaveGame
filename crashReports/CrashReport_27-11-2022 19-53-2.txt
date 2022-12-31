@@ -1,0 +1,32 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.IllegalArgumentException: alpha value out of range
+	at java.desktop/java.awt.AlphaComposite.<init>(AlphaComposite.java:656)
+	at java.desktop/java.awt.AlphaComposite.getInstance(AlphaComposite.java:725)
+	at me.ElectronicsBoy.wavegame.entities.TrailEntity.makeTransparent(TrailEntity.java:49)
+	at me.ElectronicsBoy.wavegame.entities.TrailEntity.postRender(TrailEntity.java:38)
+	at io.github.electronicsboy.GameEngine.entity.Handler.postRender(Handler.java:22)
+	at me.ElectronicsBoy.wavegame.Main.postRender(Main.java:42)
+	at io.github.electronicsboy.GameEngine.Engine.render(Engine.java:138)
+	at io.github.electronicsboy.GameEngine.Engine.run(Engine.java:79)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+alpha value out of range
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/eclipse-workspace/WaveGameGameEngine
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/eclipse-workspace/WaveGameGameEngine/crashReports/CrashReport_27-11-2022 19-53-2.txt!@#

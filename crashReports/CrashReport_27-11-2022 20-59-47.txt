@@ -1,0 +1,31 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.IllegalArgumentException: input == null!
+	at java.desktop/javax.imageio.ImageIO.read(ImageIO.java:1402)
+	at io.github.electronicsboy.GameEngine.SpriteSheet.BufferedImageLoader.loadImage(BufferedImageLoader.java:13)
+	at me.ElectronicsBoy.wavegame.Game.init(Game.java:24)
+	at io.github.electronicsboy.GameEngine.Engine.addWindow(Engine.java:147)
+	at me.ElectronicsBoy.wavegame.Main.init(Main.java:31)
+	at io.github.electronicsboy.GameEngine.Engine.run(Engine.java:112)
+	at me.ElectronicsBoy.wavegame.Main.<init>(Main.java:21)
+	at me.ElectronicsBoy.wavegame.Main.main(Main.java:25)
+
+Caused by:
+null
+
+Message:
+input == null!
+Current Thread:
+main
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/eclipse-workspace/WaveGameGameEngine
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/eclipse-workspace/WaveGameGameEngine/crashReports/CrashReport_27-11-2022 20-59-47.txt!@#

@@ -1,0 +1,35 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.Error: Unresolved compilation problems: 
+	Syntax error, insert "VariableDeclarators" to complete LocalVariableDeclaration
+	Syntax error, insert ";" to complete BlockStatements
+	asdasdasd cannot be resolved
+
+	at me.ElectronicsBoy.wavegame.Main.postRender(Main.java:38)
+	at io.github.electronicsboy.GameEngine.Engine.render(Engine.java:116)
+	at io.github.electronicsboy.GameEngine.Engine.run(Engine.java:64)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+Unresolved compilation problems: 
+	Syntax error, insert "VariableDeclarators" to complete LocalVariableDeclaration
+	Syntax error, insert ";" to complete BlockStatements
+	asdasdasd cannot be resolved
+
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/eclipse-workspace/WaveGameGameEngine
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/eclipse-workspace/WaveGameGameEngine/crashReports/CrashReport_23-11-2022 17-45-17.txt!@#

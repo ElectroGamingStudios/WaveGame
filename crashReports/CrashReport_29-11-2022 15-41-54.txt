@@ -1,0 +1,29 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.NullPointerException: Cannot invoke "java.awt.Rectangle.intersects(java.awt.Rectangle)" because the return value of "io.github.electronicsboy.GameEngine.entity.Entity.getBounds()" is null
+	at me.ElectronicsBoy.wavegame.entities.PlayerEntity.tick(PlayerEntity.java:30)
+	at io.github.electronicsboy.GameEngine.entity.Handler.postTick(Handler.java:14)
+	at me.ElectronicsBoy.wavegame.Main.postTick(Main.java:56)
+	at io.github.electronicsboy.GameEngine.Engine.tick(Engine.java:51)
+	at io.github.electronicsboy.GameEngine.Engine.run(Engine.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+Cannot invoke "java.awt.Rectangle.intersects(java.awt.Rectangle)" because the return value of "io.github.electronicsboy.GameEngine.entity.Entity.getBounds()" is null
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/eclipse-workspace/WaveGameGameEngine
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/eclipse-workspace/WaveGameGameEngine/crashReports/CrashReport_29-11-2022 15-41-54.txt!@#

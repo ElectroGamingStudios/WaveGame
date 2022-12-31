@@ -1,0 +1,29 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.util.ConcurrentModificationException
+	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
+	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
+	at me.ElectronicsBoy.wavegame.Main.postTick(Main.java:57)
+	at io.github.electronicsboy.GameEngine.Engine.tick(Engine.java:51)
+	at io.github.electronicsboy.GameEngine.Engine.run(Engine.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+null
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/eclipse-workspace/WaveGameGameEngine
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/eclipse-workspace/WaveGameGameEngine/crashReports/CrashReport_27-11-2022 21-24-52.txt!@#
