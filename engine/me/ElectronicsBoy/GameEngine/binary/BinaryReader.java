@@ -89,4 +89,7 @@ public class BinaryReader {
 		}
 	}
 
+	public boolean available() throws IOException {
+		return reader.available() > 0;
+	}
 }

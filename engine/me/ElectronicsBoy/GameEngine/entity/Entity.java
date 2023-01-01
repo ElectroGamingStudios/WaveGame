@@ -14,6 +14,9 @@ public abstract class Entity {
 	protected float x;
 	protected float velX, velY;
 	protected Color col;
+	public void setCol(Color col) {
+		this.col = col;
+	}
 	protected MovementType movementType;
 	protected BufferedImage texture;
 	
@@ -31,6 +34,7 @@ public abstract class Entity {
 		this.movementType = movementType;
 		this.texture = texture;
 	}
+	public Entity() {}
 	
 	public abstract void tick();
 	public abstract void postRender(Graphics g, boolean useTexture);
@@ -151,6 +155,20 @@ public abstract class Entity {
 	public EntityType getType() {
 		return type;
 	}
-	
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setVelX(float velX) {
+		this.velX = velX;
+	}
+
+	public void setVelY(float velY) {
+		this.velY = velY;
+	}	
 	public abstract Rectangle getBounds();
 }

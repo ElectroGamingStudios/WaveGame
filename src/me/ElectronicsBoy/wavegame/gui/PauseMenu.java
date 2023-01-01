@@ -8,6 +8,7 @@ import me.ElectronicsBoy.GameEngine.Engine;
 import me.ElectronicsBoy.GameEngine.gui.Button;
 import me.ElectronicsBoy.GameEngine.gui.ButtonStyle;
 import me.ElectronicsBoy.GameEngine.gui.GUIWindow;
+import me.ElectronicsBoy.wavegame.Game;
 
 public class PauseMenu extends GUIWindow {
 
@@ -17,12 +18,22 @@ public class PauseMenu extends GUIWindow {
 
 	@Override
 	public void init() {
-		addButton(new Button(190, 350, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 190, 300, "Save and Quit", Color.WHITE, () -> {
+		addButton(new Button(190, 350, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 190, 390, "Save and Quit", Color.WHITE, () -> {
+			try {
+				Game.inst.save.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			engine.sys.setState("MENU");
 		}));
-		addButton(new Button(190, 260, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 260, 210, "Save", Color.WHITE, () -> {
+		addButton(new Button(190, 260, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 260, 300, "Save", Color.WHITE, () -> {
+			try {
+				Game.inst.save.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}));
-		addButton(new Button(190, 170, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 260, 390, "Quit", Color.WHITE, () -> {
+		addButton(new Button(190, 170, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 260, 210, "Quit", Color.WHITE, () -> {
 			engine.sys.setState("MENU");
 		}));
 		addButton(new Button(190, 80, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 230, 120, "Continue", Color.WHITE, () -> {

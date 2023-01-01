@@ -7,6 +7,8 @@ import me.ElectronicsBoy.GameEngine.Engine;
 
 public class Button {
 	
+	public static long LAST_CLICK = System.currentTimeMillis();
+	
 	private boolean isButtonClicked;
 	
 	private int x, y, width, height, tx, ty;
@@ -45,8 +47,9 @@ public class Button {
 	}
 	
 	public void tick() {
-		if(Engine.getMouse().isMouseClicked()) {
+		if(Engine.getMouse().isMouseClicked() && (System.currentTimeMillis() - LAST_CLICK) > 200) {
 			if(Engine.getMouse().isMouseOver(x, y, width, height)) {
+				LAST_CLICK = System.currentTimeMillis();
 				isButtonClicked = true;
 				run.onClick();
 			}else {

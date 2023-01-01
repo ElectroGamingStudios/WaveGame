@@ -11,9 +11,8 @@ import me.ElectronicsBoy.GameEngine.entity.MovementType;
 import me.ElectronicsBoy.wavegame.Main;
 
 public class TrailEntity extends Entity {
-	private float alpha = 1;
-	
-	private float life;
+	public float alpha = 1;
+	public float life;
 	
 	private Main main;
 	
@@ -22,10 +21,15 @@ public class TrailEntity extends Entity {
 		this.main = main;
 		this.life = life;
 	}
+	public TrailEntity(float life, Main main) {
+		super(0, 0, 0, 0, EntityType.None, null, MovementType.None, null);
+		this.main = main;
+		this.life = life;
+	}
 
 	public void tick() {
 		if(alpha > life)
-			alpha = alpha - (life - 0.000000000000000000001f);
+			alpha = alpha - (life - 0.01f);
 		else
 			main.handler.removeObject(this);
 	}

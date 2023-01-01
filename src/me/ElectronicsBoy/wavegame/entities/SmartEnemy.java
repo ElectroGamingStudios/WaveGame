@@ -24,6 +24,12 @@ public class SmartEnemy extends Entity {
 		this.main = main;
 	}
 
+	public SmartEnemy() {
+		super(16, 16, new Random().nextInt(Util.WIDTH - 50), new Random().nextInt(Util.HEIGHT - 50), EntityType.Enemy, Color.PINK, MovementType.None, Game.inst.getImg(1, 2, 16, 16));
+		this.player = Game.inst.player;
+		this.main = Game.inst.main;
+	}
+	
 	@Override
 	public void tick() {
 		float diffX = x - player.getX() - 8.0F;

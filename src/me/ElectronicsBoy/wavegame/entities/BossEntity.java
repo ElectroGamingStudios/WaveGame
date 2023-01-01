@@ -12,8 +12,8 @@ import me.ElectronicsBoy.wavegame.Game;
 import me.ElectronicsBoy.wavegame.Main;
 
 public class BossEntity extends Entity {
-	private int timer = 80;
-	private int timer2 = 50;
+	public int timer = 80;
+	public int timer2 = 50;
 	
 	private Main main;
 	

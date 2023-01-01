@@ -13,6 +13,7 @@ import me.ElectronicsBoy.wavegame.entities.BossEntity;
 import me.ElectronicsBoy.wavegame.entities.FastEnemy;
 import me.ElectronicsBoy.wavegame.entities.PlayerEntity;
 import me.ElectronicsBoy.wavegame.entities.SmartEnemy;
+import me.ElectronicsBoy.wavegame.save.Save;
 
 public class Game extends GUIWindow implements HUDPostTick {
 	private static boolean gameStart = false;
@@ -28,11 +29,18 @@ public class Game extends GUIWindow implements HUDPostTick {
 	public PlayerEntity player;
 	public boolean hudReady = false;
 	
-	private int afterScoreLevel = 100;
+	public int afterScoreLevel = 100;
+	public boolean bossFight;
+	
+	public BossEntity boss;
+	public Save save;
+	public Main main;
 	
 	public Game(Engine engine) {
 		super("PLAY", engine);
 		inst = this;
+		save = new Save((Main)engine);
+		this.main = (Main) engine;
 	}
 
 	@Override
@@ -44,9 +52,15 @@ public class Game extends GUIWindow implements HUDPostTick {
 	public void tickUI() {
 		if(gameStart) {
 			((Main)engine).handler.clearAll();
-			((Main)engine).handler.addObject(new BasicEnemy());
-			player = new PlayerEntity(((Main)engine));
-			((Main)engine).handler.addObject(player);
+			try {
+				save.read().forEach((e) -> { ((Main)engine).handler.addObject(e); System.out.println(e.getClass().getName()); });
+			} catch (Exception e) {
+				((Main)engine).handler.addObject(new BasicEnemy());
+				player = new PlayerEntity(((Main)engine));
+				((Main)engine).handler.addObject(player);
+				e.printStackTrace();
+			}
+//			((Main)engine).handler.addObject(new BasicEnemy());
 			gameStart = false;
 			if(!hudReady) {
 				hud.addRenderValue("Level", "0");
@@ -64,15 +78,17 @@ public class Game extends GUIWindow implements HUDPostTick {
 				levelsReset++;
 				levelsTillBoss++;
 				if(levelsTillBoss == 10) {
+					bossFight = true;
 					levelsTillBoss = 0;
 					levelsReset = 0;
 					reset = 1;
 					((Main)engine).handler.clearEnemies();
-					((Main)engine).handler.addObject(new BossEntity(((Main)engine)));
+					((Main)engine).handler.addObject(boss = new BossEntity(((Main)engine)));
 					afterScoreLevel += 50;
 				}
 				
 				if(levelsReset == 4 && reset == 1) {
+					bossFight = false;
 					((Main)engine).handler.clearEnemies();
 					((Main)engine).handler.addObject(new BasicEnemy());
 				}else if(levelsReset == 4 && reset == 0) 
