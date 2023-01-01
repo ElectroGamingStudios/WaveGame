@@ -21,10 +21,9 @@ public class TrailEntity extends Entity {
 		this.main = main;
 		this.life = life;
 	}
-	public TrailEntity(float life, Main main) {
+	public TrailEntity(Main main) {
 		super(0, 0, 0, 0, EntityType.None, null, MovementType.None, null);
 		this.main = main;
-		this.life = life;
 	}
 
 	public void tick() {

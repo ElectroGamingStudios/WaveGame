@@ -73,12 +73,11 @@ public class Main extends Engine {
 	public void messageReceivedClient(String message) {}
 	public void messageReceivedServer(String message) {}
 	public void onStateChange() {
-		handler.object.removeIf((Entity a) -> a instanceof MenuEntity);
-		handler.object.removeIf((Entity a) -> a instanceof TrailEntity);
 		if(sys.getState().equals("PAUSE")) {
-			handler.object.forEach((e) -> entitis.add(e));
+			handler.object.forEach((e) -> {entitis.add(e);});
 			handler.clearAll();
 			alreadyDone = false;
+			System.out.println("P");
 		}
 		if(sys.getState().equals("PLAY") && (sys.getLastState() == null) ? false : sys.getLastState().equals("PAUSE") && !alreadyDone) {
 			handler.clearAll();
@@ -86,6 +85,8 @@ public class Main extends Engine {
 			entitis.removeIf((Entity a) -> true);
 			alreadyDone = true;
 		}
+		handler.object.removeIf((Entity a) -> a instanceof MenuEntity);
+		handler.object.removeIf((Entity a) -> a instanceof TrailEntity);
 	}
 	public void onESC() {
 		if(sys.getState().equals("PLAY")) sys.setState("PAUSE");

@@ -9,6 +9,7 @@ import me.ElectronicsBoy.GameEngine.gui.Button;
 import me.ElectronicsBoy.GameEngine.gui.ButtonStyle;
 import me.ElectronicsBoy.GameEngine.gui.GUIWindow;
 import me.ElectronicsBoy.wavegame.Game;
+import me.ElectronicsBoy.wavegame.Main;
 
 public class PauseMenu extends GUIWindow {
 
@@ -24,6 +25,16 @@ public class PauseMenu extends GUIWindow {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			Game.inst.level = 0;
+			Game.inst.levelsReset = 0;
+			Game.inst.scoreKeep = 0;
+			Game.inst.reset = 0;
+			Game.inst.level = 1;
+			Game.inst.afterScoreLevel = 100;
+			hud.health = 100;
+			hud.updateValue(1, "0");
+			hud.updateValue(2, "0");
+			engine.sys.setState("DEAD");
 			engine.sys.setState("MENU");
 		}));
 		addButton(new Button(190, 260, 230, 64, Color.WHITE, Color.WHITE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.Rect), 260, 300, "Save", Color.WHITE, () -> {

@@ -28,10 +28,10 @@ public class Save {
 		BinaryWriter writer = new BinaryWriter(binfile);
 		writer.writeBoolean(main.game.bossFight);
 		if(main.game.bossFight) {
-			writer.writeInt((int) main.game.boss.getX());
-			writer.writeInt((int) main.game.boss.getY());
-			writer.writeInt((int) main.game.boss.getVelX());
-			writer.writeInt((int) main.game.boss.getVelY());
+			writer.writeFloat(main.game.boss.getX());
+			writer.writeFloat(main.game.boss.getY());
+			writer.writeFloat(main.game.boss.getVelX());
+			writer.writeFloat(main.game.boss.getVelY());
 			writer.writeInt(main.game.boss.timer);
 			writer.writeInt(main.game.boss.timer2);
 		}
@@ -42,17 +42,18 @@ public class Save {
 		writer.writeInt(Game.inst.scoreKeep);
 		writer.writeInt(Game.inst.fullScore);
 		writer.writeInt(Game.inst.afterScoreLevel);
-		writer.writeInt((int) main.hud.health);
+		writer.writeFloat(main.hud.health);
 		for(Entity e : main.entitis) {
 			if(!(e instanceof BossEntity)) {
+				System.out.println(e.getClass().getName());
 				writer.writeString(e.getClass().getName());
-				writer.writeInt((int) e.getX());
-				writer.writeInt((int) e.getY());
-				writer.writeInt((int) e.getVelX());
-				writer.writeInt((int) e.getVelY());
+				writer.writeFloat(e.getX());
+				writer.writeFloat(e.getY());
+				writer.writeFloat(e.getVelX());
+				writer.writeFloat(e.getVelY());
 				if(e instanceof TrailEntity) {
-					writer.writeInt((int) ((TrailEntity)e).alpha);
-					writer.writeInt((int) ((TrailEntity)e).life);
+					writer.writeFloat(((TrailEntity)e).alpha);
+					writer.writeFloat(((TrailEntity)e).life);
 					writer.writeInt(e.getCol().getRGB());
 				}
 			}
@@ -64,10 +65,10 @@ public class Save {
 			BinaryReader reader = new BinaryReader(binfile);
 			if(reader.readBoolean()) {
 				BossEntity boss = new BossEntity(main);
-				boss.setX(reader.readInt());
-				boss.setY(reader.readInt());
-				boss.setVelX(reader.readInt());
-				boss.setVelY(reader.readInt());
+				boss.setX(reader.readFloat());
+				boss.setY(reader.readFloat());
+				boss.setVelX(reader.readFloat());
+				boss.setVelY(reader.readFloat());
 				boss.timer = reader.readInt();
 				boss.timer2 = reader.readInt();
 				entities.add(boss);
@@ -81,7 +82,9 @@ public class Save {
 			Game.inst.scoreKeep = reader.readInt();
 			Game.inst.fullScore = reader.readInt();
 			Game.inst.afterScoreLevel = reader.readInt();
-			main.hud.health = reader.readInt();
+			main.hud.health = reader.readFloat();
+			main.hud.updateValue(1, Integer.toString(Game.inst.level));
+			
 			while(reader.available()) {
 				Entity e;
 				String s = reader.readString();
@@ -89,30 +92,30 @@ public class Save {
 				switch(s) {
 				case "me.ElectronicsBoy.wavegame.entities.PlayerEntity":
 					e = new PlayerEntity(main);
-					e.setX(reader.readInt());
-					e.setY(reader.readInt());
-					e.setVelX(reader.readInt());
-					e.setVelY(reader.readInt());
+					e.setX(reader.readFloat());
+					e.setY(reader.readFloat());
+					e.setVelX(reader.readFloat());
+					e.setVelY(reader.readFloat());
 					Game.inst.player = (PlayerEntity) e;
 					entities.add(e);
 					break;
 				case "me.ElectronicsBoy.wavegame.entities.TrailEntity":
-					e = new TrailEntity(null, 0, main);
-					e.setX(reader.readInt());
-					e.setY(reader.readInt());
-					e.setVelX(reader.readInt());
-					e.setVelY(reader.readInt());
-					((TrailEntity)e).alpha = reader.readInt();
-					((TrailEntity)e).life = reader.readInt();
+					e = new TrailEntity(main);
+					e.setX(reader.readFloat());
+					e.setY(reader.readFloat());
+					e.setVelX(reader.readFloat());
+					e.setVelY(reader.readFloat());
+					((TrailEntity)e).alpha = reader.readFloat();
+					((TrailEntity)e).life = reader.readFloat();
 					e.setCol(new Color(reader.readInt()));
 					entities.add(e);
 					break;
 				default:
 					e = instantiate(s, Entity.class);
-					e.setX(reader.readInt());
-					e.setY(reader.readInt());
-					e.setVelX(reader.readInt());
-					e.setVelY(reader.readInt());
+					e.setX(reader.readFloat());
+					e.setY(reader.readFloat());
+					e.setVelX(reader.readFloat());
+					e.setVelY(reader.readFloat());
 					entities.add(e);
 				}
 			}

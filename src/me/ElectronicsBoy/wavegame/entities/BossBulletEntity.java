@@ -9,6 +9,7 @@ import me.ElectronicsBoy.GameEngine.Util.Util;
 import me.ElectronicsBoy.GameEngine.entity.Entity;
 import me.ElectronicsBoy.GameEngine.entity.EntityType;
 import me.ElectronicsBoy.GameEngine.entity.MovementType;
+import me.ElectronicsBoy.wavegame.Game;
 import me.ElectronicsBoy.wavegame.Main;
 
 public class BossBulletEntity extends Entity {
@@ -19,6 +20,10 @@ public class BossBulletEntity extends Entity {
 		velX = new Random().nextInt(5 - -5) + -5;
 		velY = 5;
 		this.main = main;
+	}
+	
+	public BossBulletEntity() {
+		this.main = Game.inst.main;
 	}
 
 	@Override
