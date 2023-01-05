@@ -9,7 +9,6 @@ import me.ElectronicsBoy.GameEngine.gui.Button;
 import me.ElectronicsBoy.GameEngine.gui.ButtonStyle;
 import me.ElectronicsBoy.GameEngine.gui.GUIWindow;
 import me.ElectronicsBoy.wavegame.Game;
-import me.ElectronicsBoy.wavegame.Main;
 
 public class PauseMenu extends GUIWindow {
 

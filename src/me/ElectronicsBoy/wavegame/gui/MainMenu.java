@@ -18,7 +18,7 @@ public class MainMenu extends GUIWindow {
 	
 	public void init() {
 		addButton(new Button(210, 150, 200, 64, Color.BLUE, Color.BLUE, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.FullRect), 270, 190, "Play", Color.WHITE, () -> {
-			engine.sys.setState("PLAY");
+			engine.sys.setState("PLAYMENU");
 			Game.start();
 		}));
 		addButton(new Button(210, 250, 200, 64, Color.CYAN, Color.CYAN, ButtonStyle.createStyle(new Font("arial", 1, 30), ButtonStyle.FullRect), 270, 290, "Help", Color.BLACK, () -> {

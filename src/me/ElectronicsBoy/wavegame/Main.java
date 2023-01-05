@@ -15,6 +15,7 @@ import me.ElectronicsBoy.wavegame.gui.HelpMenu;
 import me.ElectronicsBoy.wavegame.gui.MainMenu;
 import me.ElectronicsBoy.wavegame.gui.MenuEntity;
 import me.ElectronicsBoy.wavegame.gui.PauseMenu;
+import me.ElectronicsBoy.wavegame.gui.SaveMenu;
 
 public class Main extends Engine {
 	private static final long serialVersionUID = -4318258672134694410L;
@@ -45,6 +46,7 @@ public class Main extends Engine {
 		super.addWindow(new GameOverMenu(this));
 		super.addWindow(game = new Game(this));
 		super.addWindow(new PauseMenu(this));
+		super.addWindow(new SaveMenu(this));
 		
 		super.initWindows(hud, null);
 		
@@ -53,17 +55,17 @@ public class Main extends Engine {
 	}
 	
 	public void postTick() {
-		if(sys.getState().equals("MENU") || sys.getState().equals("HELP") || sys.getState().equals("DEAD") || sys.getState().equals("PAUSE")) {
-			if(renderPartical == true && lastState == sys.getState()) {
+		if(sys.getState().equals("MENU") || sys.getState().equals("HELP") || sys.getState().equals("DEAD") || sys.getState().equals("PAUSE") || sys.getState().equals("PLAYMENU")) {
+			if(renderPartical == true && lastState.equals(sys.getState())) {
 				handler.clearAll();
 				for (int i = 0; i < 20; i ++) 
 					handler.addObject(new MenuEntity(this));
 				renderPartical = false;
-			}else if(renderPartical == false && lastState != sys.getState()) {
+			}else if(renderPartical == false && !lastState.equals(sys.getState())) {
 				renderPartical = true;
 			}
 			lastState = sys.getState();
-		}
+		}	
 		handler.postTick();
 	}
 	public void postRender(Graphics g) {
@@ -87,6 +89,7 @@ public class Main extends Engine {
 		}
 		handler.object.removeIf((Entity a) -> a instanceof MenuEntity);
 		handler.object.removeIf((Entity a) -> a instanceof TrailEntity);
+		renderPartical = true;
 	}
 	public void onESC() {
 		if(sys.getState().equals("PLAY")) sys.setState("PAUSE");

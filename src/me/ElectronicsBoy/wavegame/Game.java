@@ -36,6 +36,8 @@ public class Game extends GUIWindow implements HUDPostTick {
 	public Save save;
 	public Main main;
 	
+	public boolean useSave = true;
+	
 	public Game(Engine engine) {
 		super("PLAY", engine);
 		inst = this;
@@ -53,14 +55,20 @@ public class Game extends GUIWindow implements HUDPostTick {
 		if(gameStart) {
 			((Main)engine).handler.clearAll();
 			try {
-				save.read().forEach((e) -> { ((Main)engine).handler.addObject(e); System.out.println(e.getClass().getName()); });
+				if(useSave)
+					save.read().forEach((e) -> { ((Main)engine).handler.addObject(e); });
+				else {
+					((Main)engine).handler.addObject(new BasicEnemy());
+					player = new PlayerEntity(((Main)engine));
+					((Main)engine).handler.addObject(player);
+				}
 			} catch (Exception e) {
+				if(save.binfile.exists()) save.binfile.delete();
 				((Main)engine).handler.addObject(new BasicEnemy());
 				player = new PlayerEntity(((Main)engine));
 				((Main)engine).handler.addObject(player);
 				e.printStackTrace();
 			}
-//			((Main)engine).handler.addObject(new BasicEnemy());
 			gameStart = false;
 			if(!hudReady) {
 				hud.addRenderValue("Level", "0");
