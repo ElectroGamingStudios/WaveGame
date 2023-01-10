@@ -37,6 +37,7 @@ public class Game extends GUIWindow implements HUDPostTick {
 	public Main main;
 	
 	public boolean useSave = true;
+	public boolean inited = false;
 	
 	public Game(Engine engine) {
 		super("PLAY", engine);
@@ -53,11 +54,13 @@ public class Game extends GUIWindow implements HUDPostTick {
 	@Override
 	public void tickUI() {
 		if(gameStart) {
+			inited = true;
 			((Main)engine).handler.clearAll();
 			try {
-				if(useSave)
+				if(useSave) {
 					save.read().forEach((e) -> { ((Main)engine).handler.addObject(e); });
-				else {
+					hudReady = true;
+				}else {
 					((Main)engine).handler.addObject(new BasicEnemy());
 					player = new PlayerEntity(((Main)engine));
 					((Main)engine).handler.addObject(player);
@@ -139,4 +142,23 @@ public class Game extends GUIWindow implements HUDPostTick {
 
 	@Override
 	public void postHUDTick() {}
+	public void reset() {
+		levelsTillBoss = 0;
+		levelsReset = 0;
+		scoreKeep = 0;
+		reset = 0;
+		level = 1;
+		fullScore = 0;
+		player = null;
+		hudReady = false;
+		
+		afterScoreLevel = 100;
+		bossFight = false;
+		
+		boss = null;
+		hud.health = 100;
+		hud.removeAll();
+		
+//		inited = false;
+	}
 }

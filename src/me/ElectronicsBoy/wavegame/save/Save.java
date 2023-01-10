@@ -45,7 +45,6 @@ public class Save {
 		writer.writeFloat(main.hud.health);
 		for(Entity e : main.entitis) {
 			if(!(e instanceof BossEntity)) {
-				System.out.println(e.getClass().getName());
 				writer.writeString(e.getClass().getName());
 				writer.writeFloat(e.getX());
 				writer.writeFloat(e.getY());
@@ -60,6 +59,7 @@ public class Save {
 		}
 	}
 	public List<Entity> read() throws Exception {
+		Game.inst.reset();
 		List<Entity> entities = new ArrayList<Entity>();
 		if(binfile.exists()) {
 			BinaryReader reader = new BinaryReader(binfile);
@@ -83,12 +83,17 @@ public class Save {
 			Game.inst.fullScore = reader.readInt();
 			Game.inst.afterScoreLevel = reader.readInt();
 			main.hud.health = reader.readFloat();
-			main.hud.updateValue(1, Integer.toString(Game.inst.level));
+			if(!Game.inst.hudReady){
+				main.hud.addRenderValue("Level", Integer.toString(Game.inst.level));
+				main.hud.addRenderValue("Score", Integer.toString(Game.inst.scoreKeep));
+			}else {
+				main.hud.updateValue(1, Integer.toString(Game.inst.level));
+				main.hud.updateValue(2, Integer.toString(Game.inst.scoreKeep));
+			}
 			
 			while(reader.available()) {
 				Entity e;
 				String s = reader.readString();
-				System.out.println(s);
 				switch(s) {
 				case "me.ElectronicsBoy.wavegame.entities.PlayerEntity":
 					e = new PlayerEntity(main);

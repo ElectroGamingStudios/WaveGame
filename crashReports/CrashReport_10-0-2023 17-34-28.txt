@@ -1,0 +1,34 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at me.ElectronicsBoy.GameEngine.gui.HUD.render(HUD.java:57)
+	at me.ElectronicsBoy.wavegame.Game.renderUI(Game.java:129)
+	at me.ElectronicsBoy.GameEngine.gui.GUIWindow.render(GUIWindow.java:31)
+	at me.ElectronicsBoy.GameEngine.Engine.render(Engine.java:139)
+	at me.ElectronicsBoy.GameEngine.Engine.run(Engine.java:81)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+Index 0 out of bounds for length 0
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/ElectroGamingStudios/WaveGame
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/ElectroGamingStudios/WaveGame/crashReports/CrashReport_10-0-2023 17-34-28.txt!@#

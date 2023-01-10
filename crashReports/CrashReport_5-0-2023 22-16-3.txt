@@ -1,0 +1,30 @@
+Game Crash Report
+-----------------
+
+All known info is shown below
+-----------------------------
+StackTrace:
+java.lang.NullPointerException: Cannot invoke "me.ElectronicsBoy.GameEngine.SpriteSheet.SpriteSheet.grabImage(int, int, int, int)" because "this.spriteSheet" is null
+	at me.ElectronicsBoy.wavegame.Game.getImg(Game.java:137)
+	at me.ElectronicsBoy.wavegame.entities.BasicEnemy.<init>(BasicEnemy.java:16)
+	at me.ElectronicsBoy.wavegame.Game.tickUI(Game.java:67)
+	at me.ElectronicsBoy.GameEngine.gui.GUIWindow.tick(GUIWindow.java:27)
+	at me.ElectronicsBoy.GameEngine.Engine.tick(Engine.java:56)
+	at me.ElectronicsBoy.GameEngine.Engine.run(Engine.java:76)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+Caused by:
+null
+
+Message:
+Cannot invoke "me.ElectronicsBoy.GameEngine.SpriteSheet.SpriteSheet.grabImage(int, int, int, int)" because "this.spriteSheet" is null
+Current Thread:
+Engine Thread
+
+System Details: 
+OS              : Linux
+OS Version      : 5.15.0-56-generic
+OS Architecture : amd64
+Current Dir     : /home/electronicsboy/ElectroGamingStudios/WaveGame
+
+#@!Game has crashed! Crash Report saved to /home/electronicsboy/ElectroGamingStudios/WaveGame/crashReports/CrashReport_5-0-2023 22-16-3.txt!@#
